@@ -49,6 +49,8 @@ export interface Station {
 	}
 	createdAt: Date
 	newsPrompts?: NewsPrompt[]
+	[key: `hourlyPrompt${number}`]: string
+	[key: `${string}Prompt`]: string
 }
 
 export interface Location {
