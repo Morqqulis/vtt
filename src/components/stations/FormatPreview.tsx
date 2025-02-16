@@ -1,56 +1,45 @@
 'use client'
 
+import { FormatData } from '@/app/(dashboard)/stations/[id]/format/page'
+
 interface FormatPreviewProps {
-  data: {
-    demographic: {
-      x: number
-      y: number
-    }
-    sliders: {
-      incomeLevel: number
-      brandAffinity: number
-      culturalInfluence: number
-      socialEngagement: number
-    }
-  }
+	formatData: FormatData
 }
 
-export default function FormatPreview({ data }: FormatPreviewProps) {
-  return (
-    <div className="space-y-4">
-      <div className="grid grid-cols-2 gap-4">
-        <div>
-          <h3 className="text-sm font-medium text-gray-400">Target Demographic</h3>
-          <p className="text-lg text-gray-200">
-            {data.demographic.x}% Young, {data.demographic.y}% Urban
-          </p>
-        </div>
-        <div>
-          <h3 className="text-sm font-medium text-gray-400">Format Style</h3>
-          <p className="text-lg text-gray-200">
-            Contemporary Hit Radio
-          </p>
-        </div>
-      </div>
+export default function FormatPreview({ formatData }: FormatPreviewProps) {
+	return (
+		<div className='space-y-4'>
+			<div className='gap-4 grid grid-cols-2'>
+				<div>
+					<h3 className='font-medium text-gray-400 text-sm'>Target Demographic</h3>
+					<p className='text-gray-200 text-lg'>
+						{formatData.demographic.x}% Young, {formatData.demographic.y}% Urban
+					</p>
+				</div>
+				<div>
+					<h3 className='font-medium text-gray-400 text-sm'>Format Style</h3>
+					<p className='text-gray-200 text-lg'>Contemporary Hit Radio</p>
+				</div>
+			</div>
 
-      <div className="grid grid-cols-2 gap-4">
-        <div>
-          <h3 className="text-sm font-medium text-gray-400">Income Level</h3>
-          <p className="text-lg text-gray-200">{data.sliders.incomeLevel}%</p>
-        </div>
-        <div>
-          <h3 className="text-sm font-medium text-gray-400">Brand Affinity</h3>
-          <p className="text-lg text-gray-200">{data.sliders.brandAffinity}%</p>
-        </div>
-        <div>
-          <h3 className="text-sm font-medium text-gray-400">Cultural Influence</h3>
-          <p className="text-lg text-gray-200">{data.sliders.culturalInfluence}%</p>
-        </div>
-        <div>
-          <h3 className="text-sm font-medium text-gray-400">Social Engagement</h3>
-          <p className="text-lg text-gray-200">{data.sliders.socialEngagement}%</p>
-        </div>
-      </div>
-    </div>
-  )
-} 
+			<div className='gap-4 grid grid-cols-2'>
+				<div>
+					<h3 className='font-medium text-gray-400 text-sm'>Income Level</h3>
+					<p className='text-gray-200 text-lg'>{formatData.sliders.incomeLevel}%</p>
+				</div>
+				<div>
+					<h3 className='font-medium text-gray-400 text-sm'>Brand Affinity</h3>
+					<p className='text-gray-200 text-lg'>{formatData.sliders.brandAffinity}%</p>
+				</div>
+				<div>
+					<h3 className='font-medium text-gray-400 text-sm'>Cultural Influence</h3>
+					<p className='text-gray-200 text-lg'>{formatData.sliders.culturalInfluence}%</p>
+				</div>
+				<div>
+					<h3 className='font-medium text-gray-400 text-sm'>Social Engagement</h3>
+					<p className='text-gray-200 text-lg'>{formatData.sliders.socialEngagement}%</p>
+				</div>
+			</div>
+		</div>
+	)
+}
