@@ -1,0 +1,78 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("TEST_DATABASE_URL")
+}
+
+model Client {
+  id         Int       @id @default(autoincrement())
+  name       String
+  email      String
+  company    String
+  website    String?
+  logo       String?
+  stationIds Int[]
+  status     String
+  stations   Station[]
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+}
+
+model Location {
+  id        Int       @id @default(autoincrement())
+  code      String
+  country   String
+  city      String
+  timezone  String
+  stations  Station[]
+  createdAt DateTime  @default(now())
+}
+
+model Station {
+  id             Int      @id @default(autoincrement())
+  name           String
+  stationId      Int
+  locationId     Int
+  website        String?
+  status         String
+  omniplayerUrl  String?
+  clientId       Int // Changed to Int to match Client.id
+  client         Client   @relation(fields: [clientId], references: [id])
+  location       Location @relation(fields: [locationId], references: [id])
+  clientSecret   String
+  username       String
+  password       String
+  systemPrompt   String?
+  hourlyPrompt0  String?
+  hourlyPrompt10 String?
+  hourlyPrompt20 String?
+  hourlyPrompt30 String?
+  hourlyPrompt40 String?
+  hourlyPrompt50 String?
+  hourlyPrompt55 String?
+  newsPrompt     String?
+  weatherPrompt  String?
+  trafficPrompt  String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model Voice {
+  id        Int      @id @default(autoincrement())
+  name      String
+  voiceId   String
+  gender    String
+  language  String
+  accent    String?
+  age       Int?
+  category  String
+  country   String
+  status    String
+  createdAt DateTime @default(now())
+}
